@@ -7,14 +7,5 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NavigaController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function homepage()
-    {
-
-    return $this->render('naviga/index.html.twig', [
-            'controller_name' => 'NavigaController',
-        ]);
-    }
+    
 }

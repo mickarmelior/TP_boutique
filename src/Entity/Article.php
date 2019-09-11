@@ -37,14 +37,15 @@ class Article
     private $descriptionArticle;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $idCategorie;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
 
     public function getId(): ?int
     {
@@ -99,18 +100,6 @@ class Article
         return $this;
     }
 
-    public function getIdCategorie(): ?int
-    {
-        return $this->idCategorie;
-    }
-
-    public function setIdCategorie(int $idCategorie): self
-    {
-        $this->idCategorie = $idCategorie;
-
-        return $this;
-    }
-
     public function getType(): ?string
     {
         return $this->type;
@@ -119,6 +108,18 @@ class Article
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getcategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setcategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

@@ -18,16 +18,15 @@ class LignesdeCommande
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="lignes")
-     * @ORM\JoinColumn(name="Commande", referencedColumnName="idCommande")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $IdCommande;
+    private $commande;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Article")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idArticle;
+    private $article;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -39,26 +38,26 @@ class LignesdeCommande
         return $this->id;
     }
 
-    public function getIdCommande(): ?Commande
+    public function getcommande(): ?Commande
     {
-        return $this->IdCommande;
+        return $this->commande;
     }
 
-    public function setIdCommande(?Commande $IdCommande): self
+    public function setcommande(?Commande $commande): self
     {
-        $this->IdCommande = $IdCommande;
+        $this->commande = $commande;
 
         return $this;
     }
 
-    public function getIdArticle(): ?Article
+    public function getarticle(): ?Article
     {
-        return $this->idArticle;
+        return $this->article;
     }
 
-    public function setIdArticle(?Article $idArticle): self
+    public function setarticle(?Article $article): self
     {
-        $this->idArticle = $idArticle;
+        $this->article = $article;
 
         return $this;
     }

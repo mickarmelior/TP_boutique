@@ -16,7 +16,7 @@ class Commande
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $idCommande;
+    private $id;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -27,7 +27,7 @@ class Commande
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commandes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idClient;
+    private $client;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -35,7 +35,7 @@ class Commande
     private $montant;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LignesdeCommande", mappedBy="IdCommande", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\LignesdeCommande", mappedBy="Id", orphanRemoval=true)
      */
     private $lignes;
 
@@ -44,9 +44,9 @@ class Commande
         $this->lignes = new ArrayCollection();
     }
 
-    public function getIdCommande(): ?int
+    public function getId(): ?int
     {
-        return $this->idCommande;
+        return $this->id;
     }
 
     public function getDateCommande(): ?\DateTimeInterface
@@ -61,14 +61,14 @@ class Commande
         return $this;
     }
 
-    public function getIdClient(): ?User
+    public function getclient(): ?User
     {
-        return $this->idClient;
+        return $this->client;
     }
 
-    public function setIdClient(?User $idClient): self
+    public function setclient(?User $client): self
     {
-        $this->idClient = $idClient;
+        $this->client = $client;
 
         return $this;
     }
@@ -97,7 +97,7 @@ class Commande
     {
         if (!$this->lignes->contains($ligne)) {
             $this->lignes[] = $ligne;
-            $ligne->setIdCommande($this);
+            $ligne->setId($this);
         }
 
         return $this;
@@ -108,8 +108,8 @@ class Commande
         if ($this->lignes->contains($ligne)) {
             $this->lignes->removeElement($ligne);
             // set the owning side to null (unless already changed)
-            if ($ligne->getIdCommande() === $this) {
-                $ligne->setIdCommande(null);
+            if ($ligne->getId() === $this) {
+                $ligne->setId(null);
             }
         }
 

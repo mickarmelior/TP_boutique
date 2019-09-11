@@ -2,11 +2,92 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>
+            {% block title %}Welcome!
+            {% endblock %}
+        </title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+            <div id="header">
+                <div class="wrap">
+                    <div class="menu">
+                        <a href="homepage" class="logo">LineshoP</a>
+                        <h1>The best online store, for real.</h1>
+                        <ul class="panier">
+                            <li class="caddie">
+                                <a href="panier">Caddie</a>
+                            </li>
+                            <li class="items">
+                                ITEMS
+                                <span id="count">{#$panier->count()#}</span>
+                            </li>
+                            <li class="total">
+                                TOTAL
+                                <span>
+                                    <span id="total">{#$panier->total()#}</span>
+                                    €</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="subheader">
+                <div class="wrap">
+                    <h2>Welcome
+                        {#if isset($logUser)}{$logUser#}
+                        you can
+                        <a href="logout">logout</a>
+                        {#else#}
+                        <a href="login">login</a>
+                        {#/if#}
+                        .</h2>
+                </div>
+            </div>
+
+
+            <div id="wrap">
+
+                <div id="menu">
+                    <ul class="wrap">
+                        <li>
+                            <a href="#">All Categories</a>
+                        </li>
+                        <li>
+                            <a href="#">Consoles</a>
+                        </li>
+                        <li>
+                            <a href="#">Jeux</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="ariane">
+                    <div class="wrap">
+                        You are right here : Home »
+                        <a href="#">Electronics</a>
+                    </div>
+                </div>
+                <div id="main" class="clearfix"></div>
+
+                {% block listing %}{% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block footer %}
+            <div id="footer">
+                <div class="wrap">
+                    <p>© AFPA, a small ecommerce template • Merci à Jeremy Jones / HTML - CSS</p>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        {% endblock %}
     </body>
 </html>
